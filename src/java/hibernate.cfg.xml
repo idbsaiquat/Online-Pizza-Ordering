@@ -46,5 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/foodsApp?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">123456</property>
+    <mapping class="com.exam.model.User"/>
   </session-factory>
 </hibernate-configuration>
