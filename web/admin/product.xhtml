@@ -109,14 +109,14 @@
                                 <f:selectItems value="#{productCtrl.allCategories()}" var="cat" itemValue="#{cat.id}" itemLabel="#{cat.category}"/>                          
                             </p:selectOneMenu>
                         </div>
-                        <div class="form-group">                           
-                            <p:outputLabel for="file">Upload product Image</p:outputLabel>
-                            <br/>
-                            <p:fileUpload id="file" value="#{productCtrl.file}" 
-                                          mode="simple" skinSimple="true"
-                                          />
+                        <div class="form-group">
+                            <p:fileUpload fileUploadListener="#{productCtrl.handleFileUpload}" 
+                                          mode="advanced" 
+                                          dragDropSupport="false"  
+                                          sizeLimit="1000000" 
+                                          fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
                         </div>
-                        <p:commandButton action="#{catCtrl.save()}" value="Add" styleClass="btn btn-success float-right" icon="pi-save" update="msg"/>
+                        <p:commandButton action="#{productCtrl.saveData()}" value="Add Product" styleClass="btn btn-success float-right" icon="pi-save" update="msg" ajax="true"/>
                     </h:form>
                 </div>
                 <div class="col-md-3"></div>

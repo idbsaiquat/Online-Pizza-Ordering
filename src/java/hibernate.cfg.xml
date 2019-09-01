@@ -48,5 +48,6 @@ Contributor(s):
     <property name="hibernate.connection.password">123456</property>
     <mapping class="com.exam.model.User"/>
     <mapping class="com.exam.model.Category"/>
+    <mapping class="com.exam.model.Product"/>
   </session-factory>
 </hibernate-configuration>

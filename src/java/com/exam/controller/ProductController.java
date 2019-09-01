@@ -8,7 +8,7 @@ package com.exam.controller;
 import com.exam.model.Category;
 import com.exam.model.Product;
 import com.exam.util.HibernateUtil;
-import java.util.ArrayList;
+import com.exam.util.Upload;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -29,36 +30,47 @@ public class ProductController {
 
     private UploadedFile file;
     private Product product;
-    Session session = null;
-    Transaction tx = null;
-
+        
+    
     public ProductController() {
         product = new Product();
-        session = HibernateUtil.getSessionFactory().openSession();
+        
     }
 
-    public String save() {
-        tx = session.beginTransaction();
+    public String saveData() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
         try {
+            String path = "C:\\Users\\Instructor\\Documents\\app\\FoodsApp\\web\\resources\\upload\\products";
+            String hasFile = Upload.uploadFile(path, file);
+
+            if (hasFile == null) {
+                massage("File upload failed");
+                return "product";
+            }
+            product.setImgName(hasFile);
+            
             session.save(product);
             tx.commit();
             session.flush();
             this.massage("Saved Successfully");
-            return "admin/home";
+            return "product";
         } catch (Exception e) {
             tx.rollback();
             this.massage("Saved Failed, please try again!");
             e.printStackTrace();
 
         }
-        return "register";
+        return "product";
     }
-    
+
     public List<Category> allCategories() {
-        tx = session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
         try {
-            Query query = session.createQuery("From Category");
-            List<Category> entityList = (List<Category>) query.list();           
+            Query query =  session.createQuery("From Category");
+            List<Category> entityList = (List<Category>) query.list();
+            session.flush();
             return entityList;
 
         } catch (Exception e) {
@@ -66,6 +78,17 @@ public class ProductController {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public void upload() {
+        if(file != null) {
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+     
+    public void handleFileUpload(FileUploadEvent event) {
+        this.file = event.getFile();        
     }
 
     public void massage(String msg) {
@@ -88,7 +111,5 @@ public class ProductController {
     public void setProduct(Product product) {
         this.product = product;
     }
-    
-    
 
 }
