@@ -6,7 +6,9 @@
 package com.exam.controller;
 
 import com.exam.model.Category;
+import com.exam.model.Product;
 import com.exam.util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,49 +17,52 @@ import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
  * @author farid
  */
-@ManagedBean(name = "catCtrl")
+@ManagedBean(name = "productCtrl")
 @ViewScoped
-public class CategoryController {
+public class ProductController {
 
-    private Category category;
-    private Session session = null;
-    private Transaction tx = null;
+    private UploadedFile file;
+    private Product product;
+    Session session = null;
+    Transaction tx = null;
 
-    public CategoryController() {
-        category = new Category();
+    public ProductController() {
+        product = new Product();
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
     public String save() {
         tx = session.beginTransaction();
         try {
-            session.saveOrUpdate(category);
+            session.save(product);
             tx.commit();
             session.flush();
             this.massage("Saved Successfully");
+            return "admin/home";
         } catch (Exception e) {
             tx.rollback();
             this.massage("Saved Failed, please try again!");
             e.printStackTrace();
 
         }
-        return "category";
+        return "register";
     }
-
+    
     public List<Category> allCategories() {
         tx = session.beginTransaction();
         try {
             Query query = session.createQuery("From Category");
-            List<Category> entityList = (List<Category>) query.list();
+            List<Category> entityList = (List<Category>) query.list();           
             return entityList;
 
         } catch (Exception e) {
-            this.massage("Login Failed, please try again!");
+            this.massage("Not Found");
             e.printStackTrace();
         }
         return null;
@@ -68,12 +73,22 @@ public class CategoryController {
         context.addMessage(null, new FacesMessage(msg));
     }
 
-    public Category getCategory() {
-        return category;
+    public UploadedFile getFile() {
+        return file;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    
+    
 
 }

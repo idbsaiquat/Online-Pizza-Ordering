@@ -3,20 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/web/css/fontawesome.min.css</file>
+            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/src/java/com/exam/controller/DashboardView.java</file>
+            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/src/java/com/exam/controller/HomeController.java</file>
             <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/web/admin/home.xhtml</file>
-            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/web/index.xhtml</file>
-            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/web/login.xhtml</file>
-            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/web/js/fontawesome.min.js</file>
-=======
-            <file>file:/home/farid/Projects/Java/foodsapp/src/java/com/exam/controller/HomeController.java</file>
-            <file>file:/home/farid/Projects/Java/foodsapp/web/admin/home.xhtml</file>
-            <file>file:/home/farid/Projects/Java/foodsapp/src/java/com/exam/controller/CategoryController.java</file>
-            <file>file:/home/farid/Projects/Java/foodsapp/web/admin/category.xhtml</file>
-            <file>file:/home/farid/Projects/Java/foodsapp/src/java/com/exam/controller/DashboardView.java</file>
-            <file>file:/home/farid/Projects/Java/foodsapp/web/register.xhtml</file>
->>>>>>> 8c925bbe05b8942bb7381586c3faa10c0dab91d0
+            <file>file:/C:/Users/Instructor/Documents/app/FoodsApp/src/java/com/exam/model/Category.java</file>
         </group>
     </open-files>
 </project-private>

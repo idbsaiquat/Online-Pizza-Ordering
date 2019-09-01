@@ -27,20 +27,20 @@
     <h:body>
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <a class="navbar-brand" href="#">Carousel</a>
+                <p:link outcome="home" value="FoodApp" styleClass="navbar-brand"/>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <p:link outcome="home" styleClass="nav-link" value="Home"/>
                         </li>
                         <li class="nav-item">
-                            <p:link class="nav-link" outcome="category" value="Home"/>
-                        </li>
+                            <p:link class="nav-link" outcome="category" value="Category"/>
+                        </li>  
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
+                            <p:link class="nav-link" outcome="product" value="Product"/>
                         </li>
                     </ul>
                 </div>
@@ -70,8 +70,8 @@
                                     </p:dataTable>
                                 </p:panel>
 
-                                <p:panel id="finance" header="Finance">
-                                    <h:outputText value="Finance Content" />
+                                <p:panel id="finance" header="Total Category">
+                                    <h:outputText value="#{dashboardView.totalCategory}" />
                                 </p:panel>
 
                                 <p:panel id="lifestyle" header="Lifestyle">
